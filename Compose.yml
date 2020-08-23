@@ -1,7 +1,7 @@
 version: '2'
 
 services:
-    AnyConnectVPN:
+    anyconnectvpn:
       build: ./Dockerfile
       restart: always
       network_mode: host
