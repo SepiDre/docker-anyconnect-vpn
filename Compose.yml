@@ -1,9 +1,8 @@
 version: '2'
 
 services:
-    YaegerVPN:
+    AnyConnectVPN:
       build: ./Dockerfile
       restart: always
-      ports:
-        - "803389:803389"
+      network_mode: host
       privileged: true
