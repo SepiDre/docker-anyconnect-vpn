@@ -1,0 +1,9 @@
+version: '2'
+
+services:
+    YaegerVPN:
+      build: ./Dockerfile
+      restart: always
+      ports:
+        - "803389:803389"
+      privileged: true
