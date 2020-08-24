@@ -4,10 +4,14 @@ echo "Build VPN connection to" "$ANYCONNECT_SERVER"
 echo "Build VPN connection with user" "$ANYCONNECT_USER"
 echo "Build VPN connection with Servercert" "$ServerCert"
 
-
-echo $ANYCONNECT_PASSWORD|openconnect $ANYCONNECT_SERVER --user=$ANYCONNECT_USER --servercert $ServerCert
+if [[ ! -z "$ServerCert" ]]; then 
+  echo $ANYCONNECT_PASSWORD|openconnect $ANYCONNECT_SERVER --user=$ANYCONNECT_USER --servercert $ServerCert
+else
+  echo $ANYCONNECT_PASSWORD|openconnect $ANYCONNECT_SERVER --user=$ANYCONNECT_USER
+fi
 
 sleep 5
+
 nft -f /etc/nftables/ipv4-nat;
 
 nft add table nat;
