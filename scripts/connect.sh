@@ -8,6 +8,7 @@ printf "Build VPN connection with Servercert" "$ServerCert"
 echo $ANYCONNECT_PASSWORD|openconnect $ANYCONNECT_SERVER --user=$ANYCONNECT_USER --servercert $ServerCert
 
 sleep 5
+sysctl -w net.ipv4.ip_forward=1
 
 iptables -t nat -A PREROUTING -i tun0 -p tcp --dport $RDPPort -j DNAT --to $RDPGateway:3389
 iptables -t nat -A POSTROUTING -o tun0 -p tcp -d $RDPGateway --dport 3389 -j MASQUERADE
